@@ -34,7 +34,6 @@
       overflow-x: hidden;
     }
 
-    /* ── LIVE BACKGROUND ── */
     #bg-canvas {
       position: fixed;
       inset: 0;
@@ -65,9 +64,7 @@
       display: flex; align-items: center; gap: 10px;
     }
     .nav-logo span { color: var(--text); }
-    .nav-links {
-      display: flex; gap: 6px; align-items: center;
-    }
+    .nav-links { display: flex; gap: 6px; align-items: center; }
     .nav-links a {
       color: var(--muted2);
       text-decoration: none;
@@ -79,8 +76,6 @@
     }
     .nav-links a:hover { color: var(--text); background: var(--surface3); }
     .nav-links a.active { color: var(--accent); }
-
-    /* Search bar in nav */
     .nav-search {
       display: flex; align-items: center;
       background: var(--surface2);
@@ -98,9 +93,6 @@
       width: 180px;
     }
     .nav-search input::placeholder { color: var(--muted); }
-    .nav-search svg { flex-shrink: 0; }
-
-    /* Burger */
     .burger {
       display: none; flex-direction: column; gap: 5px;
       background: none; border: none; cursor: pointer; padding: 4px;
@@ -113,8 +105,6 @@
     .burger.open span:nth-child(1) { transform: rotate(45deg) translate(5px,5px); }
     .burger.open span:nth-child(2) { opacity: 0; }
     .burger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px,-5px); }
-
-    /* Mobile menu */
     .mobile-menu {
       display: none; position: fixed; top: 68px; left: 0; right: 0;
       background: rgba(6,9,18,0.97);
@@ -129,7 +119,7 @@
       border-bottom: 1px solid var(--border);
     }
 
-    /* ── MAIN LAYOUT ── */
+    /* ── MAIN ── */
     main {
       position: relative;
       z-index: 1;
@@ -138,10 +128,7 @@
     }
 
     /* ── HERO ── */
-    .hero {
-      text-align: center;
-      padding: 40px 20px 60px;
-    }
+    .hero { text-align: center; padding: 40px 20px 60px; }
     .hero-badge {
       display: inline-flex; align-items: center; gap: 8px;
       background: rgba(56,189,248,0.08);
@@ -156,7 +143,6 @@
       background: var(--accent3); animation: blink 1.4s infinite;
     }
     @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
-
     h1.hero-title {
       font-family: 'Syne', sans-serif;
       font-size: clamp(2.4rem, 6vw, 4rem);
@@ -168,7 +154,6 @@
     }
     h1.hero-title .g1 { color: var(--accent); }
     h1.hero-title .g2 { color: var(--accent2); }
-
     .hero-sub {
       color: var(--muted2);
       font-size: 1.05rem;
@@ -176,10 +161,8 @@
       line-height: 1.7;
       animation: fadeDown 0.7s 0.2s ease both;
     }
-
-    /* Stats bar */
     .stats-bar {
-      display: flex; gap: 0; justify-content: center;
+      display: flex; justify-content: center;
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: var(--radius);
@@ -202,11 +185,8 @@
     }
     .stat-lbl { font-size: 0.72rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; }
 
-    /* ── CONVERTER CARD ── */
-    .converter-wrap {
-      max-width: 860px; margin: 0 auto;
-      padding: 0 20px;
-    }
+    /* ── CONVERTER ── */
+    .converter-wrap { max-width: 860px; margin: 0 auto; padding: 0 20px; }
     .converter-card {
       background: var(--surface);
       border: 1px solid var(--border);
@@ -239,9 +219,7 @@
     }
     .lang-btn.active { background: var(--accent); color: #0f172a; }
     .lang-btn:hover:not(.active) { background: var(--surface3); color: var(--text); }
-
     .card-body { padding: 24px 28px; }
-
     textarea#textInput {
       width: 100%; min-height: 110px;
       background: var(--surface2);
@@ -256,15 +234,12 @@
     }
     textarea#textInput:focus { outline: none; border-color: var(--border2); }
     textarea#textInput::placeholder { color: var(--muted); }
-
     .char-count {
       text-align: right; font-size: 0.75rem;
       color: var(--muted); margin-top: 6px;
     }
     .char-count.warn { color: var(--gold); }
     .char-count.over { color: var(--red); }
-
-    /* Detect banner */
     .detect-banner {
       display: none; margin-top: 12px;
       align-items: center; gap: 10px;
@@ -275,7 +250,6 @@
     }
     .detect-banner .detected-lang { color: var(--accent); font-weight: 600; }
     .detect-banner .arrow { color: var(--gold); }
-
     .translated-preview {
       display: none; margin-top: 10px;
       padding: 10px 14px;
@@ -285,8 +259,6 @@
       font-size: 0.85rem; color: var(--muted2);
     }
     .translated-preview strong { color: var(--text); }
-
-    /* Action buttons */
     .action-row {
       display: flex; gap: 10px; margin-top: 16px; flex-wrap: wrap;
     }
@@ -306,16 +278,12 @@
     .btn-tts { background: var(--surface3); color: var(--muted2); border: 1px solid var(--border2); }
     .btn-tts:hover { color: var(--text); }
     .btn-clear { background: transparent; color: var(--muted); border: 1px solid var(--border); }
-
     @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.65} }
-
     .status {
       margin-top: 12px; font-size: 0.85rem;
       color: var(--gold); min-height: 22px;
       display: flex; align-items: center; gap: 6px;
     }
-
-    /* Rate limit bar */
     .rate-bar-wrap {
       margin-top: 16px;
       background: var(--surface2);
@@ -326,6 +294,7 @@
       background: linear-gradient(90deg, var(--accent3), var(--accent));
       transition: width 0.4s ease;
       border-radius: 6px;
+      width: 0%;
     }
     .rate-label {
       display: flex; justify-content: space-between;
@@ -334,8 +303,9 @@
 
     /* ── SIGNS OUTPUT ── */
     .signs-section {
-      padding: 28px 28px;
+      padding: 28px;
       border-top: 1px solid var(--border);
+      display: none;
     }
     .signs-header {
       display: flex; align-items: center; justify-content: space-between;
@@ -354,9 +324,7 @@
       color: var(--accent);
       border: 1px solid rgba(56,189,248,0.2);
     }
-    .speed-controls {
-      display: flex; align-items: center; gap: 8px;
-    }
+    .speed-controls { display: flex; align-items: center; gap: 8px; }
     .speed-btn {
       background: var(--surface3); border: 1px solid var(--border);
       color: var(--muted2); padding: 4px 10px;
@@ -365,7 +333,6 @@
       transition: all 0.15s;
     }
     .speed-btn:hover, .speed-btn.active { color: var(--accent); border-color: var(--border2); }
-
     .signs-grid {
       display: flex; flex-wrap: wrap; gap: 10px; justify-content: center;
     }
@@ -412,7 +379,7 @@
       border-radius: var(--radius-sm);
     }
 
-    /* ── TABS (History + Stats + Feedback) ── */
+    /* ── TABS ── */
     .tabs-section {
       max-width: 860px; margin: 40px auto 0;
       padding: 0 20px;
@@ -436,9 +403,7 @@
     .tab-panel.active { display: block; }
 
     /* History */
-    .history-list {
-      display: flex; flex-direction: column; gap: 10px;
-    }
+    .history-list { display: flex; flex-direction: column; gap: 10px; }
     .history-item {
       background: var(--surface);
       border: 1px solid var(--border);
@@ -446,11 +411,9 @@
       padding: 14px 18px;
       display: flex; align-items: center;
       justify-content: space-between; gap: 12px;
-      transition: border-color 0.2s;
-      cursor: pointer;
+      transition: border-color 0.2s; cursor: pointer;
     }
     .history-item:hover { border-color: var(--border2); }
-    .history-text { flex: 1; }
     .history-orig { font-size: 0.9rem; font-weight: 500; color: var(--text); }
     .history-meta { font-size: 0.75rem; color: var(--muted); margin-top: 2px; }
     .history-badge {
@@ -463,7 +426,7 @@
       padding: 40px 20px; font-size: 0.9rem;
     }
 
-    /* Stats Dashboard */
+    /* Stats */
     .stats-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
@@ -484,27 +447,19 @@
     }
     .stat-card .s-val {
       font-family: 'Syne', sans-serif;
-      font-size: 2rem; font-weight: 700; color: var(--accent);
-      line-height: 1;
+      font-size: 2rem; font-weight: 700; color: var(--accent); line-height: 1;
     }
-    .stat-card .s-sub {
-      font-size: 0.75rem; color: var(--muted); margin-top: 4px;
-    }
+    .stat-card .s-sub { font-size: 0.75rem; color: var(--muted); margin-top: 4px; }
     .lang-breakdown {
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: var(--radius);
       padding: 20px;
     }
-    .lang-row {
-      display: flex; align-items: center; gap: 10px; margin-bottom: 10px;
-    }
+    .lang-row { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
     .lang-row:last-child { margin-bottom: 0; }
     .lang-name { font-size: 0.85rem; color: var(--muted2); min-width: 80px; }
-    .lang-bar-wrap {
-      flex: 1; height: 6px; background: var(--surface2);
-      border-radius: 6px; overflow: hidden;
-    }
+    .lang-bar-wrap { flex: 1; height: 6px; background: var(--surface2); border-radius: 6px; overflow: hidden; }
     .lang-bar { height: 100%; border-radius: 6px; transition: width 0.6s ease; }
     .lang-pct { font-size: 0.75rem; color: var(--muted); min-width: 36px; text-align: right; }
 
@@ -519,9 +474,7 @@
       font-family: 'Syne', sans-serif;
       font-size: 1.1rem; font-weight: 700; margin-bottom: 20px;
     }
-    .star-row {
-      display: flex; gap: 8px; margin-bottom: 20px;
-    }
+    .star-row { display: flex; gap: 8px; margin-bottom: 20px; }
     .star {
       font-size: 1.8rem; cursor: pointer;
       transition: transform 0.15s;
@@ -540,9 +493,7 @@
     }
     .feedback-wrap textarea:focus { outline: none; border-color: var(--border2); }
     .feedback-wrap textarea::placeholder { color: var(--muted); }
-    .feedback-tags {
-      display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px;
-    }
+    .feedback-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
     .ftag {
       padding: 5px 12px; border-radius: 100px;
       font-size: 0.78rem; font-weight: 500;
@@ -560,12 +511,8 @@
       transition: opacity 0.2s;
     }
     .submit-feedback:hover { opacity: 0.88; }
-    .feedback-success {
-      display: none; text-align: center; padding: 30px 20px;
-    }
-    .feedback-success .check {
-      font-size: 2.5rem; margin-bottom: 12px;
-    }
+    .feedback-success { display: none; text-align: center; padding: 30px 20px; }
+    .feedback-success .check { font-size: 2.5rem; margin-bottom: 12px; }
 
     /* ── FOOTER ── */
     footer {
@@ -586,9 +533,7 @@
       font-size: 1.2rem; font-weight: 800;
       color: var(--accent); margin-bottom: 10px;
     }
-    .footer-brand p {
-      font-size: 0.85rem; color: var(--muted); line-height: 1.7;
-    }
+    .footer-brand p { font-size: 0.85rem; color: var(--muted); line-height: 1.7; }
     .footer-col h4 {
       font-family: 'Syne', sans-serif;
       font-size: 0.8rem; font-weight: 700;
@@ -632,8 +577,6 @@
       from { opacity: 0; transform: translateY(12px); }
       to { opacity: 1; transform: translateY(0); }
     }
-
-    /* ── SCROLL REVEAL ── */
     @keyframes fadeDown {
       from { opacity: 0; transform: translateY(-16px); }
       to { opacity: 1; transform: translateY(0); }
@@ -642,8 +585,6 @@
       from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
     }
-
-    /* ── ANIMATIONS ── */
     .spin { display: inline-block; animation: spin 1s linear infinite; }
     @keyframes spin { to { transform: rotate(360deg); } }
 
@@ -664,14 +605,11 @@
 </head>
 <body>
 
-<!-- LIVE BACKGROUND -->
 <canvas id="bg-canvas"></canvas>
 
 <!-- NAVBAR -->
 <nav>
-  <div class="nav-logo">
-    🤟 <span>Sign</span>Bridge
-  </div>
+  <div class="nav-logo">🤟 <span>Sign</span>Bridge</div>
   <div class="nav-links">
     <a href="#" class="active">Converter</a>
     <a href="#" onclick="switchTab('history');return false;">History</a>
@@ -683,7 +621,7 @@
     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2" stroke-linecap="round">
       <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
     </svg>
-    <input type="text" placeholder="Search history..." id="historySearch" oninput="filterHistory(this.value)" />
+    <input type="text" placeholder="Search history..." id="historySearch" oninput="filterHistory(this.value)"/>
   </div>
   <button class="burger" id="burgerBtn" onclick="toggleMenu()">
     <span></span><span></span><span></span>
@@ -711,11 +649,9 @@
       <span class="g1">Silence</span> with <span class="g2">Signs</span>
     </h1>
     <p class="hero-sub">
-      Type or speak in any language — we auto-detect, translate, and render into
-      American or Indian Sign Language instantly.
+      Type or speak in any language — we auto-detect, translate, and render
+      into American or Indian Sign Language instantly.
     </p>
-
-    <!-- Live stats bar -->
     <div class="stats-bar">
       <div class="stat-item">
         <span class="stat-val" id="statConversions">0</span>
@@ -741,11 +677,9 @@
     <div class="converter-card">
       <div class="card-header">
         <div class="card-title">✋ Sign Language Converter</div>
-        <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap;">
-          <div class="lang-toggle">
-            <button class="lang-btn active" onclick="setSignLanguage('asl',this)">🇺🇸 ASL</button>
-            <button class="lang-btn" onclick="setSignLanguage('isl',this)">🇮🇳 ISL</button>
-          </div>
+        <div class="lang-toggle">
+          <button class="lang-btn active" onclick="setSignLanguage('asl',this)">🇺🇸 ASL</button>
+          <button class="lang-btn" onclick="setSignLanguage('isl',this)">🇮🇳 ISL</button>
         </div>
       </div>
 
@@ -764,36 +698,27 @@
         </div>
 
         <div class="action-row">
-          <button class="btn btn-primary" id="convertBtn" onclick="convertText()">
-            ✋ Convert to Signs
-          </button>
-          <button class="btn btn-mic" id="micBtn" onclick="startListening()">
-            🎤 Speak
-          </button>
-          <button class="btn btn-tts" id="ttsBtn" onclick="speakText()" title="Text to Speech">
-            🔊 Hear
-          </button>
+          <button class="btn btn-primary" id="convertBtn" onclick="convertText()">✋ Convert to Signs</button>
+          <button class="btn btn-mic" id="micBtn" onclick="startListening()">🎤 Speak</button>
+          <button class="btn btn-tts" id="ttsBtn" onclick="speakText()">🔊 Hear</button>
           <button class="btn btn-clear" onclick="clearAll()">✕ Clear</button>
         </div>
 
         <div class="status" id="status"></div>
 
-        <!-- Rate Limit Bar -->
         <div class="rate-bar-wrap">
-          <div class="rate-bar" id="rateBar" style="width:0%"></div>
+          <div class="rate-bar" id="rateBar"></div>
         </div>
         <div class="rate-label">
-          <span id="rateLabel">Rate limit: <span id="rateUsed">0</span>/20 per minute</span>
+          <span>Rate limit: <span id="rateUsed">0</span>/20 per minute</span>
           <span id="rateReset" style="color:var(--muted)"></span>
         </div>
       </div>
 
-      <!-- Signs output -->
-      <div class="signs-section" id="signsSection" style="display:none;">
+      <!-- Signs Output -->
+      <div class="signs-section" id="signsSection">
         <div class="signs-header">
-          <div>
-            <div class="signs-label" id="signsLabel">Signs output</div>
-          </div>
+          <div class="signs-label" id="signsLabel">Signs output</div>
           <div class="speed-controls">
             <span style="font-size:0.75rem;color:var(--muted);">Animate:</span>
             <button class="speed-btn active" onclick="setSpeed(800,this)">Slow</button>
@@ -806,7 +731,7 @@
       </div>
     </div>
 
-    <!-- TABS: History, Stats, Feedback -->
+    <!-- TABS -->
     <div class="tabs-section">
       <div class="tabs-nav">
         <button class="tab-btn active" onclick="switchTab('history',this)">📋 History</button>
@@ -814,14 +739,12 @@
         <button class="tab-btn" onclick="switchTab('feedback',this)">💬 Feedback</button>
       </div>
 
-      <!-- HISTORY PANEL -->
       <div class="tab-panel active" id="panel-history">
         <div class="history-list" id="historyList">
           <div class="history-empty">No conversions yet. Try something above! 👆</div>
         </div>
       </div>
 
-      <!-- STATS PANEL -->
       <div class="tab-panel" id="panel-stats">
         <div class="stats-grid">
           <div class="stat-card">
@@ -852,7 +775,6 @@
         </div>
       </div>
 
-      <!-- FEEDBACK PANEL -->
       <div class="tab-panel" id="panel-feedback">
         <div class="feedback-wrap">
           <div id="feedbackForm">
@@ -861,11 +783,11 @@
               Help us improve SignBridge! Your input shapes what we build next.
             </p>
             <div class="star-row" id="starRow">
-              <span class="star" data-v="1" onclick="rateStar(1)">⭐</span>
-              <span class="star" data-v="2" onclick="rateStar(2)">⭐</span>
-              <span class="star" data-v="3" onclick="rateStar(3)">⭐</span>
-              <span class="star" data-v="4" onclick="rateStar(4)">⭐</span>
-              <span class="star" data-v="5" onclick="rateStar(5)">⭐</span>
+              <span class="star" onclick="rateStar(1)">⭐</span>
+              <span class="star" onclick="rateStar(2)">⭐</span>
+              <span class="star" onclick="rateStar(3)">⭐</span>
+              <span class="star" onclick="rateStar(4)">⭐</span>
+              <span class="star" onclick="rateStar(5)">⭐</span>
             </div>
             <div class="feedback-tags">
               <span class="ftag" onclick="toggleTag(this)">🎯 Accurate Signs</span>
@@ -880,15 +802,9 @@
           </div>
           <div class="feedback-success" id="feedbackSuccess">
             <div class="check">✅</div>
-            <div style="font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:700;margin-bottom:8px;">
-              Thank you!
-            </div>
-            <p style="color:var(--muted);font-size:0.85rem;">
-              Your feedback has been recorded. We really appreciate it!
-            </p>
-            <button class="btn btn-tts" style="margin:16px auto 0;display:flex;" onclick="resetFeedback()">
-              Submit Another
-            </button>
+            <div style="font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:700;margin-bottom:8px;">Thank you!</div>
+            <p style="color:var(--muted);font-size:0.85rem;">Your feedback has been recorded. We really appreciate it!</p>
+            <button class="btn btn-tts" style="margin:16px auto 0;display:flex;" onclick="resetFeedback()">Submit Another</button>
           </div>
         </div>
       </div>
@@ -901,10 +817,7 @@
   <div class="footer-top">
     <div class="footer-brand">
       <div class="logo">🤟 SignBridge</div>
-      <p>
-        Breaking communication barriers between hearing and deaf communities
-        through AI-powered sign language conversion. Built with ❤️ for accessibility.
-      </p>
+      <p>Breaking communication barriers between hearing and deaf communities through AI-powered sign language conversion. Built with ❤️ for accessibility.</p>
     </div>
     <div class="footer-col">
       <h4>Product</h4>
@@ -938,26 +851,19 @@
   </div>
 </footer>
 
-<!-- TOAST CONTAINER -->
 <div class="toast-wrap" id="toastWrap"></div>
 
 <script>
-  // ── LIVE BACKGROUND (particle waves) ──────────────────────────────
+  // ── BACKGROUND CANVAS ──────────────────────────────────────────
   (function() {
     const canvas = document.getElementById('bg-canvas');
     const ctx = canvas.getContext('2d');
     let W, H, particles = [];
     const COLORS = ['#38bdf820','#818cf815','#34d39915'];
-
-    function resize() {
-      W = canvas.width = window.innerWidth;
-      H = canvas.height = window.innerHeight;
-    }
-
+    function resize() { W = canvas.width = window.innerWidth; H = canvas.height = window.innerHeight; }
     function makeParticle() {
       return {
-        x: Math.random() * W,
-        y: Math.random() * H,
+        x: Math.random() * W, y: Math.random() * H,
         r: Math.random() * 120 + 40,
         vx: (Math.random() - 0.5) * 0.3,
         vy: (Math.random() - 0.5) * 0.3,
@@ -965,11 +871,9 @@
         phase: Math.random() * Math.PI * 2
       };
     }
-
     resize();
     for (let i = 0; i < 14; i++) particles.push(makeParticle());
     window.addEventListener('resize', resize);
-
     function draw(t) {
       ctx.clearRect(0, 0, W, H);
       particles.forEach(p => {
@@ -992,20 +896,21 @@
     requestAnimationFrame(draw);
   })();
 
-  // ── STATE ──────────────────────────────────────────────────────────
+  // ── STATE ──────────────────────────────────────────────────────
+  const BASE_URL = 'https://sign-lang-converter-0gpi.onrender.com';
   let currentSignLanguage = 'asl';
   let currentSigns = [];
   let animSpeed = 800;
   let animTimer = null;
-  let history = [];
-  let stats = { conversions: 0, signsTotal: 0, words: 0, langs: {} };
+  let convHistory = [];
+  let localStats = { conversions: 0, signsTotal: 0, words: 0, langs: {} };
   let rateCount = 0;
   let rateReset = null;
   let feedbackRating = 0;
   const RATE_LIMIT = 20;
   const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
 
-  // ── NAVBAR ────────────────────────────────────────────────────────
+  // ── NAVBAR ────────────────────────────────────────────────────
   function toggleMenu() {
     const m = document.getElementById('mobileMenu');
     const b = document.getElementById('burgerBtn');
@@ -1020,13 +925,14 @@
     document.getElementById('footer').scrollIntoView({ behavior: 'smooth' });
   }
 
-  // ── TABS ──────────────────────────────────────────────────────────
+  // ── TABS ──────────────────────────────────────────────────────
   function switchTab(id, btn) {
     document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
     document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
     document.getElementById('panel-' + id).classList.add('active');
-    if (btn) btn.classList.add('active');
-    else {
+    if (btn) {
+      btn.classList.add('active');
+    } else {
       document.querySelectorAll('.tab-btn').forEach(b => {
         if (b.textContent.toLowerCase().includes(id)) b.classList.add('active');
       });
@@ -1035,7 +941,7 @@
     document.querySelector('.tabs-section').scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 
-  // ── CHAR COUNT ───────────────────────────────────────────────────
+  // ── CHAR COUNT ───────────────────────────────────────────────
   function updateCharCount(ta) {
     const n = ta.value.length;
     const el = document.getElementById('charCount');
@@ -1044,7 +950,7 @@
     if (n > 500) ta.value = ta.value.slice(0, 500);
   }
 
-  // ── RATE LIMIT ───────────────────────────────────────────────────
+  // ── RATE LIMIT ───────────────────────────────────────────────
   function checkRateLimit() {
     if (!rateReset || Date.now() > rateReset) {
       rateCount = 0;
@@ -1053,7 +959,7 @@
     }
     if (rateCount >= RATE_LIMIT) {
       const rem = Math.ceil((rateReset - Date.now()) / 1000);
-      showStatus(`⏳ Rate limit reached. Resets in ${rem}s`, 'gold');
+      showStatus('⏳ Rate limit reached. Resets in ' + rem + 's');
       return false;
     }
     rateCount++;
@@ -1063,11 +969,13 @@
 
   function updateRateUI() {
     const pct = (rateCount / RATE_LIMIT) * 100;
-    document.getElementById('rateBar').style.width = pct + '%';
-    document.getElementById('rateBar').style.background =
-      pct > 80 ? 'linear-gradient(90deg,#f87171,#ef4444)' :
-      pct > 50 ? 'linear-gradient(90deg,#fbbf24,#f59e0b)' :
-      'linear-gradient(90deg,#34d399,#38bdf8)';
+    const bar = document.getElementById('rateBar');
+    bar.style.width = pct + '%';
+    bar.style.background = pct > 80
+      ? 'linear-gradient(90deg,#f87171,#ef4444)'
+      : pct > 50
+        ? 'linear-gradient(90deg,#fbbf24,#f59e0b)'
+        : 'linear-gradient(90deg,#34d399,#38bdf8)';
     document.getElementById('rateUsed').textContent = rateCount;
   }
 
@@ -1076,11 +984,11 @@
     const tick = setInterval(() => {
       const rem = Math.ceil((rateReset - Date.now()) / 1000);
       if (rem <= 0) { clearInterval(tick); el.textContent = ''; return; }
-      el.textContent = `Resets in ${rem}s`;
+      el.textContent = 'Resets in ' + rem + 's';
     }, 1000);
   }
 
-  // ── LANG SELECTOR ────────────────────────────────────────────────
+  // ── SIGN LANGUAGE SELECTOR ───────────────────────────────────
   function setSignLanguage(lang, btn) {
     currentSignLanguage = lang;
     document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
@@ -1102,7 +1010,7 @@
     clearOutput();
   }
 
-  // ── CONVERT ──────────────────────────────────────────────────────
+  // ── CONVERT ──────────────────────────────────────────────────
   async function convertText() {
     const text = document.getElementById('textInput').value.trim();
     if (!text) { showStatus('⚠️ Please enter some text first!'); return; }
@@ -1113,17 +1021,27 @@
     document.getElementById('translatedPreview').style.display = 'none';
 
     try {
-      const res = await fetch('https://sign-lang-converter-0gpi.onrender.com/convert', {
-  method: 'POST',
-  headers: { 'Content-Type': 'application/json' },
-  body: JSON.stringify({ text, language: currentSignLanguage })
-});
+      const res = await fetch(BASE_URL + '/convert', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ text: text, language: currentSignLanguage })
+      });
+
+      if (!res.ok) {
+        const err = await res.json();
+        showStatus('❌ ' + (err.error || 'Server error'));
+        return;
+      }
+
       const data = await res.json();
 
+      // Show detected language banner
       if (data.detected_language && data.detected_language !== 'en') {
         document.getElementById('detectedLang').textContent = data.language_name;
         document.getElementById('detectBanner').style.display = 'flex';
       }
+
+      // Show translated text if different
       if (data.processed && data.processed.toLowerCase() !== data.original.toLowerCase()) {
         document.getElementById('translatedText').textContent = data.processed;
         document.getElementById('translatedPreview').style.display = 'block';
@@ -1136,10 +1054,11 @@
 
     } catch (e) {
       showStatus('❌ Connection error. Is the server running?');
+      console.error(e);
     }
   }
 
-  // ── RENDER SIGNS ─────────────────────────────────────────────────
+  // ── RENDER SIGNS ─────────────────────────────────────────────
   function renderSigns(signs, original, detectedLang, langName) {
     currentSigns = signs;
     const grid = document.getElementById('signsGrid');
@@ -1150,41 +1069,43 @@
     section.style.display = 'block';
 
     const badgeText = currentSignLanguage.toUpperCase();
-    const langInfo = detectedLang && detectedLang !== 'en'
-      ? ` <span class="badge">${langName} → EN</span>` : '';
+    const langInfo = (detectedLang && detectedLang !== 'en')
+      ? ' <span class="badge">' + langName + ' → EN</span>' : '';
 
-    label.innerHTML = `Signs for: "<strong>${original}</strong>" <span class="badge">${badgeText}</span>${langInfo}`;
+    label.innerHTML = 'Signs for: "<strong>' + original + '</strong>" <span class="badge">' + badgeText + '</span>' + langInfo;
 
-    signs.forEach((sign, i) => {
-      const el = createSignCard(sign, i);
-      grid.appendChild(el);
+    signs.forEach(function(sign, i) {
+      grid.appendChild(createSignCard(sign, i));
     });
   }
 
   function createSignCard(sign, idx) {
     if (sign.char === ' ') {
       const d = document.createElement('div');
-      d.className = 'space-card'; d.textContent = '[space]';
-      d.dataset.idx = idx; return d;
+      d.className = 'space-card';
+      d.textContent = '[space]';
+      d.dataset.idx = idx;
+      return d;
     }
     if (!sign.image) {
       const d = document.createElement('div');
       d.className = 'unsupported-card';
-      d.innerHTML = `<span style="font-size:1.2rem">${sign.char}</span><span>no sign</span>`;
-      d.dataset.idx = idx; return d;
+      d.dataset.idx = idx;
+      d.innerHTML = '<span style="font-size:1.2rem">' + sign.char + '</span><span>no sign</span>';
+      return d;
     }
     const card = document.createElement('div');
-    card.className = 'sign-card'; card.dataset.idx = idx;
+    card.className = 'sign-card';
+    card.dataset.idx = idx;
     card.style.animationDelay = (idx * 0.04) + 's';
-    card.innerHTML = `
-      <img src="${sign.image}" alt="${sign.char}"
-        onerror="this.src='https://placehold.co/68x68/1e293b/38bdf8?text=${encodeURIComponent(sign.char)}'"/>
-      <div class="sign-char">${sign.char}</div>
-    `;
+    card.innerHTML =
+      '<img src="' + sign.image + '" alt="' + sign.char + '" ' +
+      'onerror="this.src=\'https://placehold.co/68x68/111827/38bdf8?text=' + encodeURIComponent(sign.char) + '\'"/>' +
+      '<div class="sign-char">' + sign.char + '</div>';
     return card;
   }
 
-  // ── WORD-LEVEL SIGN ANIMATION ────────────────────────────────────
+  // ── ANIMATION ────────────────────────────────────────────────
   function setSpeed(ms, btn) {
     animSpeed = ms;
     document.querySelectorAll('.speed-btn').forEach(b => b.classList.remove('active'));
@@ -1192,17 +1113,24 @@
   }
 
   function playSigns() {
-    if (animTimer) { clearInterval(animTimer); animTimer = null; document.getElementById('playBtn').textContent = '▶ Play'; return; }
+    const playBtn = document.getElementById('playBtn');
+    if (animTimer) {
+      clearInterval(animTimer);
+      animTimer = null;
+      playBtn.textContent = '▶ Play';
+      return;
+    }
     const cards = document.querySelectorAll('#signsGrid [data-idx]');
     if (!cards.length) return;
     let i = 0;
-    document.getElementById('playBtn').textContent = '⏹ Stop';
+    playBtn.textContent = '⏹ Stop';
     cards.forEach(c => c.classList.remove('active-sign'));
-    animTimer = setInterval(() => {
+    animTimer = setInterval(function() {
       cards.forEach(c => c.classList.remove('active-sign'));
       if (i >= cards.length) {
-        clearInterval(animTimer); animTimer = null;
-        document.getElementById('playBtn').textContent = '▶ Play';
+        clearInterval(animTimer);
+        animTimer = null;
+        playBtn.textContent = '▶ Play';
         return;
       }
       cards[i].classList.add('active-sign');
@@ -1211,7 +1139,7 @@
     }, animSpeed);
   }
 
-  // ── TEXT TO SPEECH ───────────────────────────────────────────────
+  // ── TEXT TO SPEECH ───────────────────────────────────────────
   function speakText() {
     const text = document.getElementById('textInput').value.trim();
     if (!text) { showStatus('⚠️ Enter text first!'); return; }
@@ -1221,34 +1149,38 @@
     utt.rate = 0.95; utt.pitch = 1;
     const btn = document.getElementById('ttsBtn');
     btn.textContent = '🔊 Speaking...';
-    utt.onend = () => { btn.textContent = '🔊 Hear'; };
+    utt.onend = function() { btn.textContent = '🔊 Hear'; };
     window.speechSynthesis.speak(utt);
     showToast('🔊 Speaking text aloud...');
   }
 
-  // ── SPEECH INPUT ─────────────────────────────────────────────────
+  // ── SPEECH INPUT ─────────────────────────────────────────────
   function startListening() {
     const btn = document.getElementById('micBtn');
-    if (!SpeechRecognition) { showStatus('❌ Use Google Chrome for speech!'); return; }
+    if (!SpeechRecognition) { showStatus('❌ Please use Google Chrome for speech!'); return; }
     const recognition = new SpeechRecognition();
     recognition.lang = '';
     recognition.interimResults = false;
     recognition.maxAlternatives = 1;
-    btn.classList.add('listening'); btn.textContent = '🔴 Listening...';
-    showStatus('🎤 Speak now...');
+    btn.classList.add('listening');
+    btn.textContent = '🔴 Listening...';
+    showStatus('🎤 Speak now in any language...');
     recognition.start();
-    recognition.onresult = (e) => {
+    recognition.onresult = function(e) {
       const t = e.results[0][0].transcript;
       document.getElementById('textInput').value = t;
       updateCharCount(document.getElementById('textInput'));
-      showStatus(`✅ Heard: "${t}"`);
+      showStatus('✅ Heard: "' + t + '"');
       convertText();
     };
-    recognition.onerror = (e) => { showStatus(`❌ Error: ${e.error}`); };
-    recognition.onend = () => { btn.classList.remove('listening'); btn.textContent = '🎤 Speak'; };
+    recognition.onerror = function(e) { showStatus('❌ Error: ' + e.error); };
+    recognition.onend = function() {
+      btn.classList.remove('listening');
+      btn.textContent = '🎤 Speak';
+    };
   }
 
-  // ── HISTORY ──────────────────────────────────────────────────────
+  // ── HISTORY ──────────────────────────────────────────────────
   function addToHistory(data) {
     const entry = {
       id: Date.now(),
@@ -1259,34 +1191,37 @@
       time: new Date().toLocaleTimeString(),
       signs: data.signs
     };
-    history.unshift(entry);
-    if (history.length > 50) history.pop();
+    convHistory.unshift(entry);
+    if (convHistory.length > 50) convHistory.pop();
     renderHistory(document.getElementById('historySearch').value);
   }
 
-  function renderHistory(filter = '') {
+  function renderHistory(filter) {
+    filter = filter || '';
     const list = document.getElementById('historyList');
     const items = filter
-      ? history.filter(h => h.original.toLowerCase().includes(filter.toLowerCase()))
-      : history;
+      ? convHistory.filter(h => h.original.toLowerCase().includes(filter.toLowerCase()))
+      : convHistory;
 
     if (!items.length) {
-      list.innerHTML = `<div class="history-empty">${filter ? 'No results for "' + filter + '"' : 'No conversions yet. Try something above! 👆'}</div>`;
+      list.innerHTML = '<div class="history-empty">' +
+        (filter ? 'No results for "' + filter + '"' : 'No conversions yet. Try something above! 👆') +
+        '</div>';
       return;
     }
-    list.innerHTML = items.map(h => `
-      <div class="history-item" onclick="reloadHistory(${h.id})">
-        <div class="history-text">
-          <div class="history-orig">${h.original}</div>
-          <div class="history-meta">${h.time} · ${h.lang} · ${h.signs.length} signs</div>
-        </div>
-        <div class="history-badge">${h.sl}</div>
-      </div>
-    `).join('');
+    list.innerHTML = items.map(function(h) {
+      return '<div class="history-item" onclick="reloadHistory(' + h.id + ')">' +
+        '<div class="history-text">' +
+          '<div class="history-orig">' + h.original + '</div>' +
+          '<div class="history-meta">' + h.time + ' · ' + h.lang + ' · ' + h.signs.length + ' signs</div>' +
+        '</div>' +
+        '<div class="history-badge">' + h.sl + '</div>' +
+      '</div>';
+    }).join('');
   }
 
   function reloadHistory(id) {
-    const h = history.find(x => x.id === id);
+    const h = convHistory.find(x => x.id === id);
     if (!h) return;
     document.getElementById('textInput').value = h.original;
     updateCharCount(document.getElementById('textInput'));
@@ -1297,28 +1232,27 @@
 
   function filterHistory(val) { renderHistory(val); }
 
-  // ── STATS ─────────────────────────────────────────────────────────
+  // ── STATS ─────────────────────────────────────────────────────
   function updateStatsData(data) {
-    stats.conversions++;
-    stats.signsTotal += (data.signs || []).filter(s => s.image).length;
-    stats.words += (data.processed || '').split(/\s+/).filter(Boolean).length;
+    localStats.conversions++;
+    localStats.signsTotal += (data.signs || []).filter(s => s.image).length;
+    localStats.words += (data.processed || '').split(/\s+/).filter(Boolean).length;
     const l = data.language_name || 'English';
-    stats.langs[l] = (stats.langs[l] || 0) + 1;
+    localStats.langs[l] = (localStats.langs[l] || 0) + 1;
 
-    // Update top bar
-    animateCount('statConversions', stats.conversions);
-    animateCount('statSigns', stats.signsTotal);
-    animateCount('statLangs', Object.keys(stats.langs).length);
-    animateCount('statWords', stats.words);
+    animateCount('statConversions', localStats.conversions);
+    animateCount('statSigns', localStats.signsTotal);
+    animateCount('statLangs', Object.keys(localStats.langs).length);
+    animateCount('statWords', localStats.words);
   }
 
   function animateCount(id, target) {
     const el = document.getElementById(id);
     const from = parseInt(el.textContent) || 0;
     const diff = target - from;
-    const steps = 20;
     let step = 0;
-    const timer = setInterval(() => {
+    const steps = 20;
+    const timer = setInterval(function() {
       step++;
       el.textContent = Math.round(from + diff * (step / steps));
       if (step >= steps) clearInterval(timer);
@@ -1326,37 +1260,36 @@
   }
 
   function renderStats() {
-    document.getElementById('sc1').textContent = stats.conversions;
-    document.getElementById('sc2').textContent = stats.signsTotal;
-    document.getElementById('sc3').textContent = stats.conversions
-      ? Math.round(stats.signsTotal / stats.conversions) : '—';
-    document.getElementById('sc4').textContent = Object.keys(stats.langs).length;
+    document.getElementById('sc1').textContent = localStats.conversions;
+    document.getElementById('sc2').textContent = localStats.signsTotal;
+    document.getElementById('sc3').textContent = localStats.conversions
+      ? Math.round(localStats.signsTotal / localStats.conversions) : '—';
+    document.getElementById('sc4').textContent = Object.keys(localStats.langs).length;
 
     const lb = document.getElementById('langBreakdown');
-    const total = Object.values(stats.langs).reduce((a, b) => a + b, 0);
+    const total = Object.values(localStats.langs).reduce((a, b) => a + b, 0);
     if (!total) return;
 
     const colors = ['#38bdf8','#818cf8','#34d399','#fbbf24','#f87171','#fb923c'];
-    const sorted = Object.entries(stats.langs).sort((a, b) => b[1] - a[1]).slice(0, 6);
+    const sorted = Object.entries(localStats.langs).sort((a, b) => b[1] - a[1]).slice(0, 6);
 
-    lb.innerHTML = `
-      <div style="font-size:0.8rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:14px;">Language Breakdown</div>
-      ${sorted.map(([lang, cnt], i) => `
-        <div class="lang-row">
-          <div class="lang-name">${lang}</div>
-          <div class="lang-bar-wrap">
-            <div class="lang-bar" style="width:${Math.round(cnt/total*100)}%;background:${colors[i%colors.length]}"></div>
-          </div>
-          <div class="lang-pct">${Math.round(cnt/total*100)}%</div>
-        </div>
-      `).join('')}
-    `;
+    lb.innerHTML =
+      '<div style="font-size:0.8rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:14px;">Language Breakdown</div>' +
+      sorted.map(function(entry, i) {
+        const lang = entry[0], cnt = entry[1];
+        const pct = Math.round(cnt / total * 100);
+        return '<div class="lang-row">' +
+          '<div class="lang-name">' + lang + '</div>' +
+          '<div class="lang-bar-wrap"><div class="lang-bar" style="width:' + pct + '%;background:' + colors[i % colors.length] + '"></div></div>' +
+          '<div class="lang-pct">' + pct + '%</div>' +
+        '</div>';
+      }).join('');
   }
 
-  // ── FEEDBACK ─────────────────────────────────────────────────────
+  // ── FEEDBACK ─────────────────────────────────────────────────
   function rateStar(n) {
     feedbackRating = n;
-    document.querySelectorAll('.star').forEach((s, i) => {
+    document.querySelectorAll('.star').forEach(function(s, i) {
       s.classList.toggle('lit', i < n);
     });
   }
@@ -1364,13 +1297,10 @@
   function toggleTag(el) { el.classList.toggle('active'); }
 
   function submitFeedback() {
-    const text = document.getElementById('feedbackText').value.trim();
-    const tags = [...document.querySelectorAll('.ftag.active')].map(t => t.textContent.trim());
     if (!feedbackRating) { showToast('⭐ Please rate your experience first!'); return; }
-
-    // In a real app, POST this to your server
-    console.log('Feedback:', { rating: feedbackRating, tags, text });
-
+    const text = document.getElementById('feedbackText').value.trim();
+    const tags = Array.from(document.querySelectorAll('.ftag.active')).map(t => t.textContent.trim());
+    console.log('Feedback:', { rating: feedbackRating, tags: tags, text: text });
     document.getElementById('feedbackForm').style.display = 'none';
     document.getElementById('feedbackSuccess').style.display = 'block';
     showToast('🎉 Feedback sent! Thank you!');
@@ -1385,26 +1315,33 @@
     document.getElementById('feedbackSuccess').style.display = 'none';
   }
 
-  // ── HELPERS ──────────────────────────────────────────────────────
+  // ── HELPERS ──────────────────────────────────────────────────
   function showStatus(msg) {
     document.getElementById('status').innerHTML = msg;
   }
 
-  function showToast(msg, duration = 3000) {
+  function showToast(msg, duration) {
+    duration = duration || 3000;
     const wrap = document.getElementById('toastWrap');
     const t = document.createElement('div');
-    t.className = 'toast'; t.textContent = msg;
+    t.className = 'toast';
+    t.textContent = msg;
     wrap.appendChild(t);
-    setTimeout(() => t.remove(), duration);
+    setTimeout(function() { t.remove(); }, duration);
   }
 
-  // Enter = convert
-  document.getElementById('textInput').addEventListener('keydown', e => {
-    if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); convertText(); }
+  // Enter key to convert
+  document.getElementById('textInput').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      convertText();
+    }
   });
 
-  // Init welcome toast
-  setTimeout(() => showToast('👋 Welcome to SignBridge! Type anything to start.'), 1200);
+  // Welcome toast
+  setTimeout(function() {
+    showToast('👋 Welcome to SignBridge! Type anything to start.');
+  }, 1200);
 </script>
 </body>
 </html>

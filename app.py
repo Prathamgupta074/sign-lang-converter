@@ -4,15 +4,13 @@ import speech_recognition as sr
 import io
 import requests
 import time
-import os
 from collections import defaultdict
-from flask import send_from_directory
 from datetime import datetime
 
 app = Flask(__name__, static_folder='static')
 CORS(app)
 
-# 🔗 YOUR RENDER URL (IMPORTANT)
+# 🔗 YOUR RENDER URL
 BASE_URL = "https://sign-lang-converter-0gpi.onrender.com"
 
 # ─────────────────────────────────────────────
@@ -22,7 +20,9 @@ LANGUAGE_NAMES = {
     "en": "English", "hi": "Hindi", "bn": "Bengali", "ta": "Tamil",
     "te": "Telugu", "mr": "Marathi", "gu": "Gujarati", "kn": "Kannada",
     "ml": "Malayalam", "pa": "Punjabi", "ur": "Urdu", "ar": "Arabic",
-    "fr": "French", "de": "German", "es": "Spanish", "ru": "Russian"
+    "fr": "French", "de": "German", "es": "Spanish", "ru": "Russian",
+    "zh-CN": "Chinese", "ja": "Japanese", "ko": "Korean", "it": "Italian",
+    "tr": "Turkish"
 }
 
 def get_language_name(code):
@@ -39,14 +39,11 @@ RATE_WINDOW = 60
 def check_rate_limit(ip):
     now = time.time()
     record = rate_store[ip]
-
     if now > record["reset_at"]:
         record["count"] = 0
         record["reset_at"] = now + RATE_WINDOW
-
     if record["count"] >= RATE_LIMIT:
         return False, int(record["reset_at"] - now)
-
     record["count"] += 1
     return True, RATE_LIMIT - record["count"]
 
@@ -62,7 +59,7 @@ usage_stats = {
 
 def record_usage(data):
     usage_stats["total_conversions"] += 1
-    usage_stats["total_signs"] += len([s for s in data["signs"] if s["image"]])
+    usage_stats["total_signs"] += len([s for s in data["signs"] if s.get("image")])
     usage_stats["total_words"] += len(data["processed"].split())
 
 
@@ -78,13 +75,10 @@ def translate_text(text):
         }
         res = requests.get(url, params=params, timeout=5)
         result = res.json()
-
         translated = "".join([item[0] for item in result[0]])
         detected_lang = result[2]
-
         return translated, detected_lang
-
-    except:
+    except Exception:
         return text, "en"
 
 
@@ -93,54 +87,60 @@ def translate_text(text):
 # ─────────────────────────────────────────────
 def process_text(text):
     translated, lang = translate_text(text)
-
     if lang == "en":
         return text, lang
-
     return translated, lang
 
 
 # ─────────────────────────────────────────────
-# ✋ TEXT → SIGNS (FIXED)
+# ✋ TEXT → SIGNS (FIXED - language param added)
 # ─────────────────────────────────────────────
-def get_signs(text):
+def get_signs(text, language='asl'):
     signs = []
+    # ✅ FIX: use language param to pick folder
+    folder = 'isl' if language == 'isl' else 'asl'
 
-    for char in text.lower():
+    for char in text.upper():
         if char == " ":
-            signs.append({"char": " ", "image": None})
+            signs.append({"char": " ", "image": None, "display": " "})
         elif char.isalpha():
-            img = f"{BASE_URL}/static/signs/{language}/{char}.jpg"
-            signs.append({"char": char, "image": img})
+            # ✅ FIX: use absolute URL with BASE_URL
+            img = f"{BASE_URL}/static/signs/{folder}/{char}.jpg"
+            signs.append({"char": char, "image": img, "display": char})
+        elif char.isdigit():
+            img = f"{BASE_URL}/static/signs/{folder}/{char}.jpg"
+            signs.append({"char": char, "image": img, "display": char})
         else:
-            signs.append({"char": char, "image": None})
+            signs.append({"char": char, "image": None, "display": char})
 
     return signs
 
 
 # ─────────────────────────────────────────────
-# 🔥 MAIN API
+# 🔥 MAIN API (FIXED - signs now assigned)
 # ─────────────────────────────────────────────
 @app.route('/convert', methods=['POST'])
 def convert():
     try:
         ip = request.remote_addr
-
         allowed, remaining = check_rate_limit(ip)
         if not allowed:
             return jsonify({'error': 'Rate limit exceeded'}), 429
 
         data = request.get_json() or {}
         text = data.get("text", "").strip()
+        language = data.get("language", "asl")  # ✅ FIX: get language from request
 
         if not text:
             return jsonify({"error": "No text provided"}), 400
-
         if len(text) > 500:
             return jsonify({"error": "Text too long"}), 400
 
         processed, lang = process_text(text)
-        signs = get_signs(processed, lang)
+
+        # ✅ FIX: signs now properly assigned with language
+        signs = get_signs(processed, language)
+
         response = {
             "original": text,
             "processed": processed,
@@ -151,7 +151,6 @@ def convert():
         }
 
         record_usage(response)
-
         return jsonify(response)
 
     except Exception as e:
@@ -167,16 +166,12 @@ def speech():
     try:
         recognizer = sr.Recognizer()
         audio_file = io.BytesIO(request.data)
-
         with sr.AudioFile(audio_file) as source:
             audio = recognizer.record(source)
-
         text = recognizer.recognize_google(audio)
-
         return jsonify({"text": text, "success": True})
-
     except Exception as e:
-        return jsonify({"text": "", "success": False})
+        return jsonify({"text": "", "success": False, "error": str(e)})
 
 
 # ─────────────────────────────────────────────
@@ -195,9 +190,15 @@ def home():
     return "Backend is running 🚀"
 
 
+# ─────────────────────────────────────────────
+# 🖼️ STATIC FILES — serve signs correctly
+# ─────────────────────────────────────────────
 @app.route('/static/signs/<path:filename>')
-def serve_static(filename):
-    return send_from_directory('static', filename)
+def serve_signs(filename):
+    from flask import send_from_directory
+    return send_from_directory('static/signs', filename)
+
+
 # ─────────────────────────────────────────────
 # 🚀 RUN
 # ─────────────────────────────────────────────
