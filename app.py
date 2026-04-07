@@ -9,7 +9,7 @@ from collections import defaultdict
 from flask import send_from_directory
 from datetime import datetime
 
-app = Flask(__name__, static_folder='static', static_url_path='/static')
+app = Flask(__name__, static_folder='static')
 CORS(app)
 
 # 🔗 YOUR RENDER URL (IMPORTANT)
@@ -196,7 +196,7 @@ def home():
     return "Backend is running 🚀"
 
 
-@app.route('/static/<path:filename>')
+@app.route('/static/signs/<path:filename>')
 def serve_static(filename):
     return send_from_directory('static', filename)
 # ─────────────────────────────────────────────
