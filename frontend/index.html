@@ -1113,12 +1113,11 @@
     document.getElementById('translatedPreview').style.display = 'none';
 
     try {
-      const res = await fetch('/convert', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ text, language: currentSignLanguage })
-      });
-      const data = await res.json();
+      const res = await fetch('https://sign-lang-backend.onrender.com/convert', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({ text, language: currentSignLanguage })
+});
 
       if (data.detected_language && data.detected_language !== 'en') {
         document.getElementById('detectedLang').textContent = data.language_name;
