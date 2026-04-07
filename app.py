@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, jsonify, url_for
+from flask_cors import CORS
 import speech_recognition as sr
 import io
 import requests
@@ -7,6 +8,7 @@ from collections import defaultdict
 from datetime import datetime
 
 app = Flask(__name__)
+CORS(app)
 
 # ─────────────────────────────────────────────
 # 🌍 Language Names
