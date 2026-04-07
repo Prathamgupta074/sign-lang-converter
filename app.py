@@ -117,20 +117,22 @@ def process_text(text):
 # ─────────────────────────────────────────────
 # ✋ Text → Signs
 # ─────────────────────────────────────────────
-def text_to_signs(text, language='asl'):
+def get_signs(text):
+    BASE_URL = "https://sign-lang-converter-0gpi.onrender.com"
     signs = []
-    folder = 'isl' if language == 'isl' else 'asl'
-    for char in text.upper():
-        if char == ' ':
-            signs.append({'char': ' ', 'image': None, 'display': ' '})
-        elif char.isalpha() or char.isdigit():
-            signs.append({
-                'char': char,
-                'display': char,
-                'image': url_for('static', filename=f'signs/{folder}/{char}.jpg')
-            })
+
+    for char in text.lower():
+        if char == " ":
+            signs.append({"char": " ", "image": None})
         else:
-            signs.append({'char': char, 'image': None, 'display': char})
+            full_path = os.path.join("static/signs", f"{char}.jpg")
+
+            if os.path.exists(full_path):
+                img_path = f"{BASE_URL}/static/signs/{char}.jpg"
+                signs.append({"char": char, "image": img_path})
+            else:
+                signs.append({"char": char, "image": None})
+
     return signs
 
 
