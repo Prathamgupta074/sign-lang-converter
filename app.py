@@ -110,7 +110,7 @@ def get_signs(text):
         if char == " ":
             signs.append({"char": " ", "image": None})
         elif char.isalpha():
-            img = f"{BASE_URL}/static/signs/{char.upper()}.jpg"
+            img = f"{BASE_URL}/static/signs/{language}/{char}.jpg"
             signs.append({"char": char, "image": img})
         else:
             signs.append({"char": char, "image": None})
@@ -140,8 +140,7 @@ def convert():
             return jsonify({"error": "Text too long"}), 400
 
         processed, lang = process_text(text)
-        signs = get_signs(processed)
-
+        signs = get_signs(processed, lang)
         response = {
             "original": text,
             "processed": processed,
