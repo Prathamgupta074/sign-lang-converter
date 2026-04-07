@@ -144,43 +144,51 @@ def get_signs(text):
 
 @app.route('/convert', methods=['POST'])
 def convert():
-    ip = request.remote_addr
+    try:
+        ip = request.remote_addr
 
-    # Rate limiting
-    allowed, remaining = check_rate_limit(ip)
-    if not allowed:
-        return jsonify({
-            'error': 'Rate limit exceeded',
-            'retry_after': remaining
-        }), 429
+        allowed, remaining = check_rate_limit(ip)
+        if not allowed:
+            return jsonify({
+                'error': 'Rate limit exceeded',
+                'retry_after': remaining
+            }), 429
 
-    data = request.get_json() or {}
-    original_text = data.get('text', '').strip()
-    language = data.get('language', 'asl')
+        data = request.get_json() or {}
+        original_text = data.get('text', '').strip()
+        language = data.get('language', 'asl')
 
-    if not original_text:
-        return jsonify({'error': 'No text provided'}), 400
+        if not original_text:
+            return jsonify({'error': 'No text provided'}), 400
 
-    # Max length guard
-    if len(original_text) > 500:
-        return jsonify({'error': 'Text too long (max 500 chars)'}), 400
+        if len(original_text) > 500:
+            return jsonify({'error': 'Text too long'}), 400
 
-    processed_text, detected_lang = process_text(original_text)
-    signs = text_to_signs(processed_text, language)
+        # 🔥 DEBUG PRINTS
+        print("INPUT:", original_text)
 
-    response_data = {
-        'original': original_text,
-        'processed': processed_text,
-        'detected_language': detected_lang,
-        'language_name': get_language_name(detected_lang),
-        'signs': signs,
-        'rate_remaining': remaining
-    }
+        processed_text, detected_lang = process_text(original_text)
+        print("PROCESSED:", processed_text)
 
-    record_usage(response_data, language)
+        signs = text_to_signs(processed_text, language)
+        print("SIGNS GENERATED")
 
-    return jsonify(response_data)
+        response_data = {
+            'original': original_text,
+            'processed': processed_text,
+            'detected_language': detected_lang,
+            'language_name': get_language_name(detected_lang),
+            'signs': signs,
+            'rate_remaining': remaining
+        }
 
+        record_usage(response_data, language)
+
+        return jsonify(response_data)
+
+    except Exception as e:
+        print("🔥 ERROR:", str(e))
+        return jsonify({'error': 'Internal server error'}), 500
 
 @app.route('/speech', methods=['POST'])
 def speech_to_text():
